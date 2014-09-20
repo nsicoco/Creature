@@ -19,7 +19,9 @@ public class LoadingScreen extends Screen {
     @Override
     public void update(float deltaTime) {
         Graphics g = game.getGraphics();
-        Assets.menu = g.newImage("img/Test.jpg", ImageFormat.RGB565);
+        Assets.menuBackground = g.newImage("img/menuBackground.png", ImageFormat.RGB565);
+        Assets.startButton = g.newImage("img/startButton.png", ImageFormat.RGB565);
+        Assets.quitButton = g.newImage("img/quitButton.png", ImageFormat.RGB565);
         //Assets.click = game.getAudio().createSound("explode.ogg");
 
 
