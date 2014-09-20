@@ -1,6 +1,6 @@
 package com.unhackathon.creature.einnuj_stats_data;
 
-import java.util.Map;
+import java.util.HashMap;
 
 /**
  * The mastermind class that will interact with all other parts of 'creature'. Responsible for
@@ -19,7 +19,7 @@ public class statsManager {
     public creatureStats creatureStats;
 
     // Map for holding of creatureStats. Meant to be permanent.
-    public Map<String, creatureStats> statsMap;
+    public HashMap<String, creatureStats> statsMap;
 
     /* Constructor */
     public statsManager() {
@@ -61,45 +61,68 @@ public class statsManager {
         //      1. WE DON'T KNOW WHERE TO STORE IT
         //      2. WE'RE ONLY IMPLEMENTING ONE CREATURE FOR UNHACKATHON
         if (false) {
-            // TODO: Call up some File Manager; grab/set the Map
-            // TODO: Call up last creatureStat from the Map; set it.
+            // @TODO: Call up some File Manager; grab/set the Map
+            // @TODO: Call up last creatureStat from the Map; set it.
         }
         else {
-            // Create and set new creature stats, default values
+            // Create and set new creature stats, default values & level curves
             creatureStats = new creatureStats();
             initCreatureStats();
+            buildEXPThreshold(creatureStats);
 
             // Clear the stats Map, then add the default monster
             statsMap.clear();
             statsMap.put(creatureStats.name, creatureStats);
 
-            // TODO: consider writing Map for data permanence at this point
+            // @TODO: consider writing Map for data permanence at this point
         }
     }
 
     /**
-     * A method that constructs a Linked List representing the experience curve required for each
-     * subsequent level-up, based on (expConstant * (nextLevel)^expFactor)
+     * A method that sets the experience threshold of the creature to level up by the formula
+     * expConstant * (Next Level)^expFactor
+     *
      * @param targetStats   The creatureStats of the creature in question from the statsMap
      */
-     public void buildLevelCurve(creatureStats targetStats) {
-         for (int i = 1; i < 50; i++) {
-             targetStats.levelFlow.add(expConstant * (i+1)^expFactor);
-         }
+     public void buildEXPThreshold(creatureStats targetStats) {
+         targetStats.expThreshold = (int) (expConstant
+                 * Math.pow((double) targetStats.level + 1, (double)expFactor));
      }
-
-    /**
-     * TODO
-     *      -calculateNextLevelExperience
-     *      -levelUp
-     *      -buildLevelCurve
-     *      -gainExperience
-     *      -incrementStats
-     *      -loadStats
-     */
 
     /* Data Manipulation*/
 
+    /**
+     * This method serves to appropriate EXP gain for creatures, in addition to reacting to any
+     * level-ups.
+     *
+     * @param expGain   the quantity of experience gained by the creature.
+     */
+    public void gainExperience(int expGain) {
+        // Check to see if initial exp and exp gained would cause a level up. If so, calculate
+        // the carry-over. THIS CARRY OVER IS ALWAYS EITHER NEGATIVE OR 0
+        if (creatureStats.expThreshold - expGain <= 0) {
+            int carryOver = creatureStats.expThreshold - expGain;
+            buildEXPThreshold(creatureStats);
+
+            // Because this carryover is always either negative or 0, adding it to the expThreshold
+            // will end up counting as EXP gained.
+            creatureStats.expThreshold += carryOver;
+
+            // Proceed with the normal level-up bonuses.
+            levelUp(creatureStats);
+        }
+        else {
+            // Reaching this means that the exp gained did not cause a level up/cross the
+            // threshold, so we just subtract from expThreshold to represent gaining EXP.
+            creatureStats.expThreshold -= expGain;
+        }
+    }
+
+    /**
+     * Increments the creature's level and stats upon leveling up.
+     *
+     * @param targetStats
+     */
     public void levelUp(creatureStats targetStats)  {
         targetStats.level++;
         incrementStats(targetStats);
