@@ -9,6 +9,12 @@ import java.util.Map;
  * Created by einnuj on 9/20/2014.
  */
 public class statsManager {
+    // A constant to represent the constant associated with the level curve
+    static int expConstant = 50;
+
+    // A factor to represent the constant associated with the level curve
+    static int expFactor = 3;
+
     // Hold the actual creature's stats for manipulation
     public creatureStats creatureStats;
 
@@ -27,7 +33,6 @@ public class statsManager {
      * Very simply a  method to initialize the stats of a creature upon creation to ensure that stats
      * will never be some sort of empty value.
      */
-
     public void initCreatureStats() {
         creatureStats.name = "Dummy";
         creatureStats.level = 1;
@@ -73,6 +78,17 @@ public class statsManager {
     }
 
     /**
+     * A method that constructs a Linked List representing the experience curve required for each
+     * subsequent level-up, based on (expConstant * (nextLevel)^expFactor)
+     * @param targetStats   The creatureStats of the creature in question from the statsMap
+     */
+     public void buildLevelCurve(creatureStats targetStats) {
+         for (int i = 1; i < 50; i++) {
+             targetStats.levelFlow.add(expConstant * (i+1)^expFactor);
+         }
+     }
+
+    /**
      * TODO
      *      -calculateNextLevelExperience
      *      -levelUp
@@ -81,4 +97,22 @@ public class statsManager {
      *      -incrementStats
      *      -loadStats
      */
+
+    /* Data Manipulation*/
+
+    public void levelUp(creatureStats targetStats)  {
+        targetStats.level++;
+        incrementStats(targetStats);
+    }
+
+    /**
+     * A method called upon level-up to increase the stats; currently set to increment by a random
+     * integer from 1 to 5.
+     *
+     * @param targetStats  The creatureStats of the creature in question from the statsMap
+     */
+    public void incrementStats(creatureStats targetStats) {
+        targetStats.attack += (int) ((Math.random() * 5));
+        targetStats.defense += (int) ((Math.random() * 5));
+    }
 }
