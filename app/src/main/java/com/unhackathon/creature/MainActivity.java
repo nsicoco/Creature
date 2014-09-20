@@ -1,9 +1,13 @@
 package com.unhackathon.creature;
 
 import android.app.Activity;
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+
+import java.nio.ByteBuffer;
 
 
 public class MainActivity extends Activity {
@@ -33,4 +37,9 @@ public class MainActivity extends Activity {
         }
         return super.onOptionsItemSelected(item);
     }
+
+
+
+
+
 }
