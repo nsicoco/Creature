@@ -1,5 +1,7 @@
 package com.unhackathon.creature.einnuj_stats_data;
 
+import java.util.LinkedList;
+
 /**
  * A class to hold values associated with a creature's stats.
  *
@@ -17,6 +19,11 @@ public class creatureStats {
     // what are decimals used for in RPGs anyway?
     public int attack;
     public int defense;
+
+    // Linked List for easy lookup of Experience requirements for Level Up; LL is used in lieu of
+    // others because there's never a reason to go back to a previous level experience lookup at
+    // this point in time.
+    LinkedList levelFlow = new LinkedList();
 
     /**
      * TODO
