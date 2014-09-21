@@ -12,4 +12,5 @@ public interface Button
     public void setPressed(boolean state);
     public void setLocation(Point point);
     public Rect getBounds();
+    public String getName();
 }

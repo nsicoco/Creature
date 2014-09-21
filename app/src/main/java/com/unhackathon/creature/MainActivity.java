@@ -3,17 +3,21 @@ package com.unhackathon.creature;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
 import com.kilobolt.framework.Screen;
 import com.kilobolt.framework.implementation.AndroidGame;
+import com.unhackathon.creature.minigames.Anagram;
 import com.unhackathon.creature.screens.LoadingScreen;
 
 
 public class MainActivity extends AndroidGame {
     @Override
     public Screen getInitScreen() {
+        Anagram anagram = new Anagram("Frankie", null);
+        Log.v("Anagrams", anagram.toString());
         return new LoadingScreen(this);
     }
 

@@ -2,6 +2,7 @@ package com.kilobolt.framework.implementation;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.content.res.Configuration;
 import android.graphics.Bitmap;
 import android.graphics.Bitmap.Config;
@@ -75,6 +76,15 @@ public abstract class AndroidGame extends Activity implements Game {
 
         if (isFinishing())
             screen.dispose();
+    }
+
+    @Override
+    public void quit()
+    {
+        Intent intent = new Intent(Intent.ACTION_MAIN);
+        intent.addCategory(Intent.CATEGORY_HOME);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(intent);
     }
 
     @Override
