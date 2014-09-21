@@ -12,9 +12,25 @@ import com.unhackathon.creature.screens.LoadingScreen;
 
 
 public class MainActivity extends AndroidGame {
+    private Camera c;
+
     @Override
     public Screen getInitScreen() {
         return new LoadingScreen(this);
+    }
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        c = new Camera(this);
+        super.onCreate(savedInstanceState);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if(requestCode == c.TAKE_PICTURE_REQUEST_CODE) {
+            c.pictureTaken(resultCode, data);
+        }
+        super.onActivityResult(requestCode, resultCode, data);
     }
 
 //    @Override

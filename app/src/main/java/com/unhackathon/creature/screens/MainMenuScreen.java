@@ -1,5 +1,8 @@
 package com.unhackathon.creature.screens;
 
+import android.content.Intent;
+import android.provider.MediaStore;
+
 import java.util.List;
 
 import com.kilobolt.framework.Game;
@@ -7,6 +10,8 @@ import com.kilobolt.framework.Graphics;
 import com.kilobolt.framework.Screen;
 import com.kilobolt.framework.Input.TouchEvent;
 import com.unhackathon.creature.Assets;
+import com.unhackathon.creature.Camera;
+import com.unhackathon.creature.MainActivity;
 
 
 public class MainMenuScreen extends Screen {
@@ -26,6 +31,8 @@ public class MainMenuScreen extends Screen {
             TouchEvent event = touchEvents.get(i);
             if (event.type == TouchEvent.TOUCH_UP) {
 
+                Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                ((MainActivity) game).startActivityForResult(intent, 100);
 
                 if (inBounds(event, 0, 0, 250, 250)) {
                     //START GAME
@@ -54,6 +61,9 @@ public class MainMenuScreen extends Screen {
         g.drawImage(Assets.menuBackground, 0, 0);
         g.drawImage(Assets.startButton, 100, 100);
         g.drawImage(Assets.quitButton, 1000, 300);
+        if(Camera.getCapturedImage() != null) {
+            g.drawImage(Camera.getCapturedAndroidImage(), 0, 0);
+        }
     }
 
 

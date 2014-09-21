@@ -101,7 +101,6 @@ public class CreatureCreationActivity extends Activity {
             if(resultCode == RESULT_OK) {
                 //Image Captured
                 imageViewCreature.setVisibility(View.VISIBLE);
-                //imageViewCreature.setImageBitmap(bmp);
                 imageViewCreature.setImageURI(Uri.fromFile(tempCreatureImage));
             } else if (resultCode == RESULT_CANCELED) {
                 //User cancelled the image capture
