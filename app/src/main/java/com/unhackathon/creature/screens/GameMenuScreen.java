@@ -203,6 +203,6 @@ public class GameMenuScreen extends Screen {
 
     @Override
     public void backButton() {
-        game.setScreen(new MainMenuScreen(game));
+        game.setScreen(new FBScreen(game));
     }
 }
