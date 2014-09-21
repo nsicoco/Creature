@@ -14,7 +14,9 @@ import com.kilobolt.framework.Image;
 import com.kilobolt.framework.Screen;
 import com.kilobolt.framework.Input.TouchEvent;
 import com.kilobolt.framework.implementation.AndroidButton;
+import com.kilobolt.framework.implementation.AndroidGame;
 import com.unhackathon.creature.Assets;
+import com.unhackathon.creature.UserStats;
 import com.unhackathon.creature.minigames.Anagram;
 
 public class AnagramScreen extends Screen {
@@ -159,6 +161,10 @@ public class AnagramScreen extends Screen {
                             enteredLetters[i] = letterBeingDragged.getName().charAt(0);
                             if(anagram.differenceBetweenWords(enteredLetters) == 0) {
                                 //TODO finish game
+
+                                UserStats stats = new UserStats((AndroidGame) game);
+                                stats.addExperience(40);
+
                                 game.setScreen(new GameMenuScreen(game));
                             }
                         }

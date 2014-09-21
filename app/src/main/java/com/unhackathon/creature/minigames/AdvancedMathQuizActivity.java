@@ -8,6 +8,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.unhackathon.creature.R;
+import com.unhackathon.creature.UserStats;
 
 /**
  * Created by Milk on 9/21/2014.
@@ -91,6 +92,10 @@ public class AdvancedMathQuizActivity extends Activity implements View.OnClickLi
                 suc.setVisibility(view.VISIBLE);
                 fail.setVisibility(view.INVISIBLE);
                 this.recreate();
+
+                UserStats stats = new UserStats(this);
+                stats.addExperience(120);
+
             }
             else
             {

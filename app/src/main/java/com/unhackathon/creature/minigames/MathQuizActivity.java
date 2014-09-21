@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import com.kilobolt.framework.implementation.AndroidGame;
 import com.unhackathon.creature.R;
+import com.unhackathon.creature.UserStats;
 import com.unhackathon.creature.mastermind.About;
 import com.unhackathon.creature.mastermind.PlayGame;
 
@@ -73,6 +74,10 @@ public class MathQuizActivity extends Activity implements View.OnClickListener {
                 suc.setVisibility(view.VISIBLE);
                 fail.setVisibility(view.INVISIBLE);
                 //AndroidGame ag = (AndroidGame)game;
+
+                UserStats stats = new UserStats(this);
+                stats.addExperience(600);
+
                 this.recreate();
              }
             else

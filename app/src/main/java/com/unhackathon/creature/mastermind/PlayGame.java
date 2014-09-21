@@ -11,6 +11,7 @@ import android.widget.ImageButton;
 import android.widget.Toast;
 
 import com.unhackathon.creature.R;
+import com.unhackathon.creature.UserStats;
 
 import java.util.Random;
 
@@ -303,7 +304,11 @@ public class PlayGame extends Activity implements View.OnClickListener {
 			pumpernickel.show();
 			showSolution();
 			gameover = true;
-		}
+
+            UserStats stats = new UserStats(this);
+            stats.addExperience(160);
+
+        }
 		else if(picks == 32)
 		{
 			pumpernickel.setText(text2);

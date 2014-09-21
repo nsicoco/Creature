@@ -1,6 +1,8 @@
 package com.unhackathon.creature.screens;
 
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.Paint;
 import android.graphics.Point;
 import android.graphics.Rect;
 
@@ -11,7 +13,9 @@ import com.kilobolt.framework.Input;
 import com.kilobolt.framework.Screen;
 import com.kilobolt.framework.implementation.AndroidButton;
 import com.kilobolt.framework.implementation.AndroidGame;
+import com.kilobolt.framework.implementation.AndroidImage;
 import com.unhackathon.creature.Assets;
+import com.unhackathon.creature.UserStats;
 import com.unhackathon.creature.mastermind.MastermindActivity;
 import com.unhackathon.creature.minigames.AdvancedMathQuizActivity;
 import com.unhackathon.creature.minigames.MathQuizActivity;
@@ -23,10 +27,13 @@ import java.util.List;
  */
 public class GameMenuScreen extends Screen {
     private Button startOverButton;
+    private UserStats stats;
 
     public GameMenuScreen(Game game) {
         super(game);
         Graphics g = game.getGraphics();
+
+        stats = new UserStats((AndroidGame) game);
 
         startOverButton = new AndroidButton("StartOver", Assets.startOverButton, Assets.startOverButtonPressed, new Point(20, 20));
         addButton(startOverButton);
@@ -34,6 +41,10 @@ public class GameMenuScreen extends Screen {
         if(Assets.avatar != null) {
             yOffset += 20 + Assets.avatar.getHeight();
         }
+
+        int expBarHeight = 50;
+        yOffset += expBarHeight += 20;
+
 
         int x = (g.getWidth() - Assets.mastermindButton.getWidth()) / 2;
         addButton(new AndroidButton("Mastermind", Assets.mastermindButton, Assets.mastermindButtonPressed, new Point(x, yOffset)));
@@ -125,6 +136,22 @@ public class GameMenuScreen extends Screen {
             yOffset += 20 + Assets.avatar.getHeight();
         }
 
+        int x = (g.getWidth()/2) - 200;
+        g.drawRect(x, yOffset, 400, 50, Color.RED);
+        int percent = (int) (stats.getExpPrecent() * 400);
+        g.drawRect(x, yOffset, percent, 50, Color.GREEN);
+
+        yOffset += 50;
+
+        Paint p = new Paint();
+        p.setTextSize(50);
+        p.setAntiAlias(true);
+        p.setTextAlign(Paint.Align.CENTER);
+        p.setColor(Color.WHITE);
+        g.drawString("Level: " + stats.getLevel(), g.getWidth()/2, yOffset, p);
+
+        yOffset += 20;
+        
         for(Button button : getButtons()) {
             Rect bounds = button.getBounds();
             g.drawImage(button.getImage(), bounds.left, bounds.top);

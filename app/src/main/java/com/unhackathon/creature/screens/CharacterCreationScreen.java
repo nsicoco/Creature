@@ -23,6 +23,7 @@ import com.kilobolt.framework.implementation.AndroidImage;
 import com.unhackathon.creature.Assets;
 import com.unhackathon.creature.Camera;
 import com.unhackathon.creature.PreferenceKeys;
+import com.unhackathon.creature.UserStats;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -98,6 +99,10 @@ public class CharacterCreationScreen extends Screen {
                                 }
                                 SharedPreferences pref = io.getSharedPref();
                                 pref.edit().putBoolean(PreferenceKeys.CHARACTER_CREATED, true).apply();
+
+                                UserStats stats = new UserStats(ag);
+                                stats.setExperience(0);
+                                stats.setLevel(0);
 
                                 game.setScreen(new GameMenuScreen(game));
                             }

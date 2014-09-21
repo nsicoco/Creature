@@ -65,4 +65,8 @@ public class UserStats {
     private int getExpCap() {
         return (int) (expConstant * Math.pow((double) level + 1, (double)expFactor));
     }
+
+    public float getExpPrecent() {
+        return experience / (float) expCap;
+    }
 }
