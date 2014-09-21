@@ -13,17 +13,19 @@ public class AndroidButton implements Button {
     Image depressed, pressed;
     boolean isPressed;
     Point location;
+    String name;
 
-    public AndroidButton(Image depressed, Image pressed, Point location)
+    public AndroidButton(String name, Image depressed, Image pressed, Point location)
     {
         this.depressed = depressed;
         this.pressed = pressed;
         isPressed = false;
         this.location = location;
+        this.name = name;
     }
-    public AndroidButton(Image depressed, Image pressed)
+    public AndroidButton(String name, Image depressed, Image pressed)
     {
-        this(depressed, pressed, new Point(0, 0));
+        this(name, depressed, pressed, new Point(0, 0));
     }
     @Override
     public Image getImage() {
@@ -46,6 +48,11 @@ public class AndroidButton implements Button {
     public Rect getBounds()
     {
         return new Rect(location.x, location.y, getImage().getWidth(), getImage().getHeight());
+    }
+
+    @Override
+    public String getName() {
+        return name;
     }
 
 }
