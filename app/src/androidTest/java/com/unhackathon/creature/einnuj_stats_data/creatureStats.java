@@ -1,7 +1,5 @@
 package com.unhackathon.creature.einnuj_stats_data;
 
-import java.util.LinkedList;
-
 /**
  * A class to hold values associated with a creature's stats.
  *
@@ -20,10 +18,11 @@ public class creatureStats {
     public int attack;
     public int defense;
 
-    // Linked List for easy lookup of Experience requirements for Level Up; LL is used in lieu of
-    // others because there's never a reason to go back to a previous level experience lookup at
-    // this point in time.
-    LinkedList levelFlow = new LinkedList();
+    // Value representing the amount of EXP needed to level up.
+    // NOTE: this value is the ONLY WAY exp is marked. It will be done by subtracting from
+    // expThreshold any EXP gained; upon hitting <= 0, the expThreshold will raise itself to a new
+    // value, minus any carry-over.
+    public int expThreshold;
 
     /**
      * TODO
