@@ -27,6 +27,24 @@
             android:name=".CreatureCreationActivity"
             android:label="@string/title_activity_creature_creation" >
         </activity>
+
+        <activity
+            android:name=".mastermind.MastermindActivity"
+            android:label="@string/title_activity_mastermind" >
+        </activity>
+        <activity
+            android:name=".mastermind.PlayGame"
+            android:label="@string/title_activity_mastermind" >
+        </activity>
+        <activity
+            android:name=".mastermind.PickColor"
+            android:label="@string/title_activity_mastermind" >
+        </activity>
+        <activity
+            android:name=".mastermind.About"
+            android:label="@string/title_activity_mastermind" >
+        </activity>
+
     </application>
 
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />

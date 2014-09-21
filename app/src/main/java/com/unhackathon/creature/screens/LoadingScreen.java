@@ -3,6 +3,8 @@ package com.unhackathon.creature.screens;
 /**
  * Created by francis on 9/20/14.
  */
+import android.app.Activity;
+import android.content.Intent;
 import android.graphics.Point;
 
 import com.kilobolt.framework.Button;
@@ -11,7 +13,9 @@ import com.kilobolt.framework.Graphics;
 import com.kilobolt.framework.Screen;
 import com.kilobolt.framework.Graphics.ImageFormat;
 import com.kilobolt.framework.implementation.AndroidButton;
+import com.kilobolt.framework.implementation.AndroidGame;
 import com.unhackathon.creature.Assets;
+import com.unhackathon.creature.mastermind.MastermindActivity;
 
 
 public class LoadingScreen extends Screen {
@@ -34,9 +38,9 @@ public class LoadingScreen extends Screen {
         MainMenuScreen mainMenuScreen = new MainMenuScreen(game);
         mainMenuScreen.addButton(new AndroidButton("Play", Assets.startButton, Assets.startButtonPressed, new Point(250, 100)));
         mainMenuScreen.addButton(new AndroidButton("Quit", Assets.quitButton, Assets.quitButtonPressed, new Point(250, 600)));
-        game.setScreen(mainMenuScreen);
-
-
+        //game.setScreen(mainMenuScreen);
+        AndroidGame a = (AndroidGame)game;
+        a.startActivity(new Intent(a,MastermindActivity.class));
     }
 
 
