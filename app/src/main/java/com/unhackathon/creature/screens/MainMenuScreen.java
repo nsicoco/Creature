@@ -1,7 +1,6 @@
 package com.unhackathon.creature.screens;
 
 import android.content.SharedPreferences;
-import android.util.Log;
 
 import java.util.List;
 
@@ -47,7 +46,7 @@ public class MainMenuScreen extends Screen {
                     {
                         button.setPressed(false);
 
-                        game.setScreen(new GameScreen(game));
+                        game.setScreen(new AnagramScreen(game));
 
 
                         AndroidFileIO io = new AndroidFileIO((AndroidGame) game);

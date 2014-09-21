@@ -29,17 +29,18 @@ public class Anagram
     {
         anagram = word.toCharArray();
 
-        for(int i = 0; i < letters.length; i++)
-        {
-            int firstIndex = random.nextInt(letters.length);
-            int secondIndex = firstIndex;
-            while(secondIndex == firstIndex)
-                secondIndex = random.nextInt(letters.length);
+        while((new String(anagram)).equals(word))
+            for(int i = 0; i < letters.length; i++)
+            {
+                int firstIndex = random.nextInt(letters.length);
+                int secondIndex = firstIndex;
+                while(secondIndex == firstIndex)
+                    secondIndex = random.nextInt(letters.length);
 
-            char temp = anagram[firstIndex];
-            anagram[firstIndex] = anagram[secondIndex];
-            anagram[secondIndex] = temp;
-        }
+                char temp = anagram[firstIndex];
+                anagram[firstIndex] = anagram[secondIndex];
+                anagram[secondIndex] = temp;
+            }
 
     }
     public char[] getLetters() { return anagram; }

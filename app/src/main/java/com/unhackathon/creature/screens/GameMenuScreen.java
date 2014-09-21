@@ -1,7 +1,6 @@
 package com.unhackathon.creature.screens;
 
 import android.content.Intent;
-import android.graphics.Paint;
 import android.graphics.Point;
 import android.graphics.Rect;
 
@@ -12,7 +11,6 @@ import com.kilobolt.framework.Input;
 import com.kilobolt.framework.Screen;
 import com.kilobolt.framework.implementation.AndroidButton;
 import com.kilobolt.framework.implementation.AndroidGame;
-import com.kilobolt.framework.implementation.AndroidImage;
 import com.unhackathon.creature.Assets;
 import com.unhackathon.creature.mastermind.MastermindActivity;
 
@@ -52,7 +50,7 @@ public class GameMenuScreen extends Screen {
                         }
                         else if(button.getName().equals("Anagram"))
                         {
-                            game.setScreen(new GameScreen(game));
+                            game.setScreen(new AnagramScreen(game));
                             return;
                         }
                     }

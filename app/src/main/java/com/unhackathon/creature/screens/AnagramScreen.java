@@ -17,7 +17,7 @@ import com.kilobolt.framework.implementation.AndroidButton;
 import com.unhackathon.creature.Assets;
 import com.unhackathon.creature.minigames.Anagram;
 
-public class GameScreen extends Screen {
+public class AnagramScreen extends Screen {
     enum GameState {
         Ready, Running, Paused, GameOver
     }
@@ -35,7 +35,7 @@ public class GameScreen extends Screen {
     Paint paint;
     private Button letterBeingDragged;
 
-    public GameScreen(Game game) {
+    public AnagramScreen(Game game) {
         super(game);
 
         // Initialize game objects here
@@ -140,14 +140,19 @@ public class GameScreen extends Screen {
                 if(letterBeingDragged != null) {
                     for(int i = 0; i < letterBoxes.length; i++) {
                         Rect bounds = letterBoxes[i].getBounds();
-                        if(bounds.contains(event.x, event.y)) {
+                        if(bounds.contains(event.x, event.y) ) {//  && enteredLetters[i] == '\u0000') {
                             letterBeingDragged.setLocation(new Point(bounds.left, bounds.top));
                             enteredLetters[i] = letterBeingDragged.getName().charAt(0);
                             if(anagram.differenceBetweenWords(enteredLetters) == 0) {
                                 //TODO finish game
                                 game.setScreen(new GameMenuScreen(game));
                             }
+//                            else if(bounds.contains(event.x, event.y))//Kick back
+//                           {
+//                               letterBeingDragged.setLocation(new Point(letterBeingDragged.getBounds().left, letterBeingDragged.getBounds().top + 50));
+//                           }
                         }
+
                     }
                 }
                 letterBeingDragged = null;
@@ -230,8 +235,6 @@ public class GameScreen extends Screen {
           //      500, 300, paint);
 
         //Start index
-        if(gameMode.equals("Anagram"))
-        {
             int startX = 75, startY = 100;
             for(Button box : letterBoxes) {
                 Rect bounds = box.getBounds();
@@ -240,7 +243,7 @@ public class GameScreen extends Screen {
             for(int i = 0; i < anagramLetters.length; i++) {
                 g.drawImage(Assets.alphabetImages[(anagramLetters[i] - 65)], startX + (i * 100), startY);
             }
-        }
+
 
 
     }
@@ -255,8 +258,6 @@ public class GameScreen extends Screen {
         //      500, 300, paint);
 
         //Start index
-        if(gameMode.equals("Anagram"))
-        {
             int startX = 75, startY = 100;
             for(Button box : letterBoxes) {
                 Rect bounds = box.getBounds();
@@ -268,7 +269,7 @@ public class GameScreen extends Screen {
             }
 //            for(int i = 0; i < anagramLetters.length; i++)
 //                g.drawImage(Assets.alphabetImages[(anagramLetters[i] - 65)], startX + (i * 100), startY);
-        }
+
 
     }
 
