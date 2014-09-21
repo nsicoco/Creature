@@ -1,6 +1,8 @@
 package com.unhackathon.creature.screens;
 
 import android.content.SharedPreferences;
+import android.graphics.Color;
+import android.graphics.Point;
 
 import java.util.List;
 
@@ -9,6 +11,7 @@ import com.kilobolt.framework.Game;
 import com.kilobolt.framework.Graphics;
 import com.kilobolt.framework.Screen;
 import com.kilobolt.framework.Input.TouchEvent;
+import com.kilobolt.framework.implementation.AndroidButton;
 import com.kilobolt.framework.implementation.AndroidFileIO;
 import com.kilobolt.framework.implementation.AndroidGame;
 import com.unhackathon.creature.Assets;
@@ -21,6 +24,10 @@ public class MainMenuScreen extends Screen {
 
     public MainMenuScreen(Game game) {
         super(game);
+        Graphics g = game.getGraphics();
+        int x = (g.getWidth() - Assets.startButton.getWidth()) / 2;
+        addButton(new AndroidButton("Play", Assets.startButton, Assets.startButtonPressed, new Point(x, 200)));
+        addButton(new AndroidButton("Quit", Assets.quitButton, Assets.quitButtonPressed, new Point(x, 600)));
     }
 
 
@@ -86,7 +93,8 @@ public class MainMenuScreen extends Screen {
     @Override
     public void paint(float deltaTime) {
         Graphics g = game.getGraphics();
-        g.drawImage(Assets.menuBackground, 0, 0);
+        //g.drawImage(Assets.menuBackground, 0, 0);
+        g.drawRect(0, 0, g.getWidth(), g.getHeight(), Color.rgb(242, 242, 242));
         for(Button button: getButtons())
             g.drawImage(button.getImage(), button.getBounds().left, button.getBounds().top);
     }

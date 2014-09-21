@@ -3,6 +3,7 @@ package com.unhackathon.creature.screens;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
+import android.graphics.Color;
 import android.graphics.Point;
 import android.graphics.Rect;
 import android.os.Environment;
@@ -135,7 +136,8 @@ public class CharacterCreationScreen extends Screen {
     public void paint(float deltaTime) {
         Graphics g = game.getGraphics();
 
-        g.drawImage(Assets.menuBackground, 0, 0);
+        //g.drawImage(Assets.menuBackground, 0, 0);
+        g.drawRect(0, 0, g.getWidth(), g.getHeight(), Color.rgb(242, 242, 242));
 
         final int buffer = 50;
 
