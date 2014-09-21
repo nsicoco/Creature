@@ -4,11 +4,16 @@ import java.util.List;
 
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.Point;
+import android.graphics.Rect;
 
+import com.kilobolt.framework.Button;
 import com.kilobolt.framework.Game;
 import com.kilobolt.framework.Graphics;
+import com.kilobolt.framework.Image;
 import com.kilobolt.framework.Screen;
 import com.kilobolt.framework.Input.TouchEvent;
+import com.kilobolt.framework.implementation.AndroidButton;
 import com.unhackathon.creature.Assets;
 import com.unhackathon.creature.minigames.Anagram;
 
@@ -22,11 +27,13 @@ public class GameScreen extends Screen {
     // Variable Setup
     // You would create game objects here.
 
-    private int livesLeft = 1;
     private String gameMode, word;
+    private Anagram anagram;
     private char[] anagramLetters;
+    private Button[] letterBoxes;
+    private char[] enteredLetters;
     Paint paint;
-
+    private Button letterBeingDragged;
 
     public GameScreen(Game game) {
         super(game);
@@ -44,8 +51,21 @@ public class GameScreen extends Screen {
         if(gameMode.equals("Anagram"))
         {
             word = Assets.dictionary[(int) (Math.random() * Assets.dictionary.length)];
-            Anagram anagram = new Anagram(word);
+            anagram = new Anagram(word);
             anagramLetters = anagram.getLetters();
+            Button[] letterButtons = new Button[anagramLetters.length];
+            letterBoxes = new Button[anagramLetters.length];
+            enteredLetters = new char[anagramLetters.length];
+            int startX = 75;
+            int startY = 100;
+            for(int i = 0; i < anagramLetters.length; i++) {
+                Image letterImage = Assets.alphabetImages[(anagramLetters[i] - 65)];
+                letterButtons[i] = new AndroidButton(""+anagramLetters[i], letterImage, letterImage,
+                        new Point(startX + (i*100), startY));
+                addButton(letterButtons[i]);
+
+                letterBoxes[i] = new AndroidButton("", Assets.letterBox, Assets.letterBox, new Point(startX + (i*100), startY+300));
+            }
         }
 
         //g.incrementTextSize(0.9f);
@@ -89,39 +109,51 @@ public class GameScreen extends Screen {
 
         // 1. All touch input is handled here:
         int len = touchEvents.size();
-        for (int i = 0; i < len; i++) {
-            TouchEvent event = touchEvents.get(i);
+        for (TouchEvent event : touchEvents) {
+            //TouchEvent event = touchEvents.get(i);
 
             if (event.type == TouchEvent.TOUCH_DOWN) {
-
-                if (event.x < 640) {
-                    // Move left.
+                if(letterBeingDragged == null) {
+                    for(Button letter : getButtons()) {
+                        Rect bounds = letter.getBounds();
+                        if(bounds.contains(event.x, event.y)) {
+                            letterBeingDragged = letter;
+                            for(int i = 0; i < letterBoxes.length; i++) {
+                                Rect boxBounds = letterBoxes[i].getBounds();
+                                if(boxBounds.left == bounds.left && boxBounds.top == bounds.top) {
+                                    enteredLetters[i] = '0';
+                                }
+                            }
+                        }
+                    }
                 }
+            }
 
-                else if (event.x > 640) {
-                    // Move right.
+            if(event.type == TouchEvent.TOUCH_DRAGGED) {
+                if(letterBeingDragged != null) {
+                    Rect bounds = letterBeingDragged.getBounds();
+                    letterBeingDragged.setLocation(new Point(event.x - (bounds.width()/2), event.y - (bounds.height()/2)));
                 }
-
             }
 
             if (event.type == TouchEvent.TOUCH_UP) {
-
-                if (event.x < 640) {
-                    // Stop moving left.
+                if(letterBeingDragged != null) {
+                    for(int i = 0; i < letterBoxes.length; i++) {
+                        Rect bounds = letterBoxes[i].getBounds();
+                        if(bounds.contains(event.x, event.y)) {
+                            letterBeingDragged.setLocation(new Point(bounds.left, bounds.top));
+                            enteredLetters[i] = letterBeingDragged.getName().charAt(0);
+                            if(anagram.differenceBetweenWords(enteredLetters) == 0) {
+                                //TODO finish game
+                                game.setScreen(new GameMenuScreen(game));
+                            }
+                        }
+                    }
                 }
-
-                else if (event.x > 640) {
-                    // Stop moving right. }
-                }
+                letterBeingDragged = null;
             }
 
 
-        }
-
-        // 2. Check miscellaneous events like death:
-
-        if (livesLeft == 0) {
-            state = GameState.GameOver;
         }
 
 
@@ -201,8 +233,13 @@ public class GameScreen extends Screen {
         if(gameMode.equals("Anagram"))
         {
             int startX = 75, startY = 100;
-            for(int i = 0; i < anagramLetters.length; i++)
+            for(Button box : letterBoxes) {
+                Rect bounds = box.getBounds();
+                g.drawImage(box.getImage(), bounds.left, bounds.top);
+            }
+            for(int i = 0; i < anagramLetters.length; i++) {
                 g.drawImage(Assets.alphabetImages[(anagramLetters[i] - 65)], startX + (i * 100), startY);
+            }
         }
 
 
@@ -211,12 +248,34 @@ public class GameScreen extends Screen {
     private void drawRunningUI() {
         Graphics g = game.getGraphics();
 
+        g.drawARGB(255, 255, 255, 255);
+
+
+        //g.drawString("Yeah dude.",
+        //      500, 300, paint);
+
+        //Start index
+        if(gameMode.equals("Anagram"))
+        {
+            int startX = 75, startY = 100;
+            for(Button box : letterBoxes) {
+                Rect bounds = box.getBounds();
+                g.drawImage(box.getImage(), bounds.left, bounds.top);
+            }
+            for(Button button : getButtons()) {
+                Rect bounds = button.getBounds();
+                g.drawImage(button.getImage(), bounds.left, bounds.top);
+            }
+//            for(int i = 0; i < anagramLetters.length; i++)
+//                g.drawImage(Assets.alphabetImages[(anagramLetters[i] - 65)], startX + (i * 100), startY);
+        }
+
     }
 
     private void drawPausedUI() {
         Graphics g = game.getGraphics();
         // Darken the entire screen so you can display the Paused screen.
-        g.drawARGB(255, 255, 255, 255);
+        //g.drawARGB(255, 255, 255, 255);
 
     }
 
@@ -229,8 +288,8 @@ public class GameScreen extends Screen {
 
     @Override
     public void pause() {
-        if (state == GameState.Running)
-            state = GameState.Paused;
+        //if (state == GameState.Running)
+            //state = GameState.Paused;
 
     }
 
@@ -246,6 +305,7 @@ public class GameScreen extends Screen {
 
     @Override
     public void backButton() {
-        pause();
+        //pause();
+        game.setScreen(new GameMenuScreen(game));
     }
 }

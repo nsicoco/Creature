@@ -13,6 +13,7 @@ public class Assets {
     mathQuizButtonPressed, advancedMathQuizButton, advancedMathQuizButtonPressed;
     public static Image avatar;
     public static Image[] alphabetImages;
+    public static Image letterBox;
     public static Sound click;
     public static String[] dictionary;
 }

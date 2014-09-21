@@ -75,6 +75,8 @@ public class LoadingScreen extends Screen {
         for(int i = 0; i < letters.length; i++)
             Assets.alphabetImages[i] = g.newImage("img/alphabet/" + letters[i] + ".png", ImageFormat.RGB565);
 
+        Assets.letterBox = g.newImage("img/alphabet/box.png", ImageFormat.RGB565);
+
 
         //Data load stuff
         AndroidFileIO androidFileIO = new AndroidFileIO((AndroidGame) game);
