@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  android:orientation="vertical"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent">
+  <TextView
+  android:id="@+id/about"
+  android:layout_height="match_parent"
+  android:layout_width="fill_parent"
+  android:text="Mastermind is a game of strategy. Start at the bottom of the page where it says
+  'Guess 1' and pick four of ths colors that are given. When you have selected the four colors a
+  prompt will appear telling you how many colors you guessed correctly. You only have eight tries,
+  good luck."
+  />
+    
+</LinearLayout>
