@@ -47,12 +47,11 @@ public class AndroidButton implements Button {
 
     public Rect getBounds()
     {
-        return new Rect(location.x, location.y, getImage().getWidth(), getImage().getHeight());
+        return new Rect(location.x, location.y, location.x+getImage().getWidth(), location.y+getImage().getHeight());
     }
 
     @Override
     public String getName() {
         return name;
     }
-
 }

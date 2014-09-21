@@ -33,22 +33,16 @@ public class MainMenuScreen extends Screen {
             TouchEvent event = touchEvents.get(i);
             for(Button button: this.getButtons())
             {
-                if(inBounds(event, button.getBounds().left, button.getBounds().top, button.getBounds().right, button.getBounds().bottom))
+                if(inBounds(event, button.getBounds().left, button.getBounds().top, button.getBounds().width(), button.getBounds().height()))
                 {
                     if(event.type == TouchEvent.TOUCH_DOWN || event.type == TouchEvent.TOUCH_HOLD
                             || event.type == TouchEvent.TOUCH_DRAGGED) {
                         button.setPressed(true);
                     }
-                    else if(event.type == TouchEvent.TOUCH_UP)//Button clicked & is Play Game
+                    else if(event.type == TouchEvent.TOUCH_UP)
                     {
                         button.setPressed(false);
-                        if(button.getName().equals("Play"))
-                            game.setScreen(new GameScreen(game));
-                        else if(button.getName().equals("Quit"))
-                        {
-                            //this.pause();
-                            game.quit();
-                        }
+                        game.setScreen(new CharacterCreationScreen(game));
 
                     }
                 }
