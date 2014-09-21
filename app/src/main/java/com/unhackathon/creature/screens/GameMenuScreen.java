@@ -25,6 +25,8 @@ public class GameMenuScreen extends Screen {
     public GameMenuScreen(Game game) {
         super(game);
         addButton(new AndroidButton("Mastermind", Assets.mastermindButton, Assets.mastermindButtonPressed));
+        addButton(new AndroidButton("Anagram", Assets.anagramButton, Assets.anagramPressedButton));
+
     }
 
     @Override
@@ -46,6 +48,11 @@ public class GameMenuScreen extends Screen {
                         if(button.getName().equalsIgnoreCase("Mastermind")) {
                             Intent intent = new Intent(ag, MastermindActivity.class);
                             ag.startActivity(intent);
+                            return;
+                        }
+                        else if(button.getName().equals("Anagram"))
+                        {
+                            game.setScreen(new GameScreen(game));
                             return;
                         }
                     }
@@ -80,6 +87,11 @@ public class GameMenuScreen extends Screen {
 
         for(int i = 0; i < buttons.size(); i++) {
             Rect bounds = buttons.get(i).getBounds();
+//            if(buttons.get(i).getName().equals("Anagram"))
+//            {
+//                g.drawImage(buttons.get(i).getImage(), 250, 400);
+//                return;
+//            }
             int row = i / 2;
             int col = (i % 2) + 1;
             int x = (g.getWidth() - col*(10 + bounds.width())) / 2;

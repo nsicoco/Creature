@@ -23,8 +23,10 @@ public class GameScreen extends Screen {
     // You would create game objects here.
 
     private int livesLeft = 1;
-    private String gameMode;
+    private String gameMode, word;
+    private char[] anagramLetters;
     Paint paint;
+
 
     public GameScreen(Game game) {
         super(game);
@@ -38,6 +40,13 @@ public class GameScreen extends Screen {
         paint.setAntiAlias(true);
         paint.setColor(Color.WHITE);
         gameMode = "Anagram";
+
+        if(gameMode.equals("Anagram"))
+        {
+            word = Assets.dictionary[(int) (Math.random() * Assets.dictionary.length)];
+            Anagram anagram = new Anagram(word);
+            anagramLetters = anagram.getLetters();
+        }
 
         //g.incrementTextSize(0.9f);
 
@@ -191,13 +200,9 @@ public class GameScreen extends Screen {
         //Start index
         if(gameMode.equals("Anagram"))
         {
-            String word = Assets.dictionary[(int)(Math.random() * Assets.dictionary.length)];
-            Anagram anagram = new Anagram(word);
-            char[] anagramLetters = anagram.getLetters();
-
             int startX = 75, startY = 100;
-            for(int i = 0; i < word.length(); i++)
-                g.drawImage(Assets.alphabetImages[0], 75, 100);
+            for(int i = 0; i < anagramLetters.length; i++)
+                g.drawImage(Assets.alphabetImages[(anagramLetters[i] - 65)], startX + (i * 100), startY);
         }
 
 

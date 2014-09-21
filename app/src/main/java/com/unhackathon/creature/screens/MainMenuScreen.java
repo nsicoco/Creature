@@ -47,6 +47,9 @@ public class MainMenuScreen extends Screen {
                     {
                         button.setPressed(false);
 
+                        game.setScreen(new GameScreen(game));
+
+
                         AndroidFileIO io = new AndroidFileIO((AndroidGame) game);
                         SharedPreferences pref = io.getSharedPref();
                         boolean characterCreated = pref.getBoolean(PreferenceKeys.CHARACTER_CREATED, false);
