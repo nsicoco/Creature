@@ -1,6 +1,7 @@
 package com.unhackathon.creature.screens;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.Point;
 import android.graphics.Rect;
@@ -21,6 +22,7 @@ import com.kilobolt.framework.implementation.AndroidGame;
 import com.kilobolt.framework.implementation.AndroidImage;
 import com.unhackathon.creature.Assets;
 import com.unhackathon.creature.Camera;
+import com.unhackathon.creature.PreferenceKeys;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -71,7 +73,8 @@ public class CharacterCreationScreen extends Screen {
 
                         } else if(button == confirmButton) {
                             if(Camera.getCapturedImage() != null) {
-                                //TODO save image
+                                Assets.avatar = Camera.getCapturedAndroidImage();
+
                                 File folder = new File(Environment.getExternalStorageDirectory(), "Creature");
                                 folder.mkdirs();
                                 File file = new File(folder, "avatar.png");
@@ -93,8 +96,10 @@ public class CharacterCreationScreen extends Screen {
                                         e.printStackTrace();
                                     }
                                 }
+                                SharedPreferences pref = io.getSharedPref();
+                                pref.edit().putBoolean(PreferenceKeys.CHARACTER_CREATED, true).apply();
 
-                                game.setScreen(new GameScreen(game));
+                                game.setScreen(new GameMenuScreen(game));
                             }
                         }
                     }

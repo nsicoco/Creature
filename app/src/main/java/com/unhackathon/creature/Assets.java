@@ -7,7 +7,10 @@ import com.kilobolt.framework.Sound;
  * Created by francis on 9/20/14.
  */
 public class Assets {
-    public static Image menuBackground, startButton, quitButton, startButtonPressed, quitButtonPressed;
+    public static Image menuBackground, startButton, quitButton, startButtonPressed, quitButtonPressed,
+            takePictureButton, takePictureButtonPressed, confirmButton, confirmButtonPressed;
+    public static Image mastermindButton, mastermindButtonPressed;
+    public static Image avatar;
     public static Image[] alphabetImages;
     public static Sound click;
 }

@@ -1,5 +1,6 @@
 package com.unhackathon.creature.screens;
 
+import android.content.SharedPreferences;
 import android.util.Log;
 
 import java.util.List;
@@ -9,7 +10,10 @@ import com.kilobolt.framework.Game;
 import com.kilobolt.framework.Graphics;
 import com.kilobolt.framework.Screen;
 import com.kilobolt.framework.Input.TouchEvent;
+import com.kilobolt.framework.implementation.AndroidFileIO;
+import com.kilobolt.framework.implementation.AndroidGame;
 import com.unhackathon.creature.Assets;
+import com.unhackathon.creature.PreferenceKeys;
 
 
 public class MainMenuScreen extends Screen {
@@ -42,8 +46,18 @@ public class MainMenuScreen extends Screen {
                     else if(event.type == TouchEvent.TOUCH_UP)
                     {
                         button.setPressed(false);
-                        game.setScreen(new CharacterCreationScreen(game));
 
+                        AndroidFileIO io = new AndroidFileIO((AndroidGame) game);
+                        SharedPreferences pref = io.getSharedPref();
+                        boolean characterCreated = pref.getBoolean(PreferenceKeys.CHARACTER_CREATED, false);
+
+                        Screen screen;
+                        if(characterCreated) {
+                            screen = new GameMenuScreen(game);
+                        } else {
+                            screen = new CharacterCreationScreen(game);
+                        }
+                        game.setScreen(screen);
                     }
                 }
                 else
