@@ -53,20 +53,23 @@ public class MainMenuScreen extends Screen {
                     {
                         button.setPressed(false);
 
-                        game.setScreen(new AnagramScreen(game));
+                        //game.setScreen(new AnagramScreen(game));
+                        if(button.getName().equalsIgnoreCase("Play")) {
+                            AndroidFileIO io = new AndroidFileIO((AndroidGame) game);
+                            SharedPreferences pref = io.getSharedPref();
+                            boolean characterCreated = pref.getBoolean(PreferenceKeys.CHARACTER_CREATED, false);
 
-
-                        AndroidFileIO io = new AndroidFileIO((AndroidGame) game);
-                        SharedPreferences pref = io.getSharedPref();
-                        boolean characterCreated = pref.getBoolean(PreferenceKeys.CHARACTER_CREATED, false);
-
-                        Screen screen;
-                        if(characterCreated) {
-                            screen = new GameMenuScreen(game);
-                        } else {
-                            screen = new CharacterCreationScreen(game);
+                            Screen screen;
+                            if(characterCreated) {
+                                screen = new GameMenuScreen(game);
+                            } else {
+                                screen = new CharacterCreationScreen(game);
+                            }
+                            game.setScreen(screen);
+                        } else if(button.getName().equalsIgnoreCase("Quit")) {
+                            game.quit();
                         }
-                        game.setScreen(screen);
+
                     }
                 }
                 else
