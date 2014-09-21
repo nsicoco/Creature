@@ -102,6 +102,12 @@ public class AnagramScreen extends Screen {
             state = GameState.Running;
     }
 
+    private void checkEnteredLetters()
+    {
+
+    }
+
+
     private void updateRunning(List<TouchEvent> touchEvents, float deltaTime) {
 
         //This is identical to the update() method from our Unit 2/3 game.
@@ -121,7 +127,7 @@ public class AnagramScreen extends Screen {
                             for(int i = 0; i < letterBoxes.length; i++) {
                                 Rect boxBounds = letterBoxes[i].getBounds();
                                 if(boxBounds.left == bounds.left && boxBounds.top == bounds.top) {
-                                    enteredLetters[i] = '0';
+                                    enteredLetters[i] = '\u0000';
                                 }
                             }
                         }
@@ -141,16 +147,20 @@ public class AnagramScreen extends Screen {
                     for(int i = 0; i < letterBoxes.length; i++) {
                         Rect bounds = letterBoxes[i].getBounds();
                         if(bounds.contains(event.x, event.y) ) {//  && enteredLetters[i] == '\u0000') {
+
+                            if(enteredLetters[i] != '\u0000')
+                            {
+                                letterBeingDragged.setLocation(new Point(letterBeingDragged.getBounds().left, letterBeingDragged.getBounds().top + 250));
+                                return;
+                            }
+
                             letterBeingDragged.setLocation(new Point(bounds.left, bounds.top));
+
                             enteredLetters[i] = letterBeingDragged.getName().charAt(0);
                             if(anagram.differenceBetweenWords(enteredLetters) == 0) {
                                 //TODO finish game
                                 game.setScreen(new GameMenuScreen(game));
                             }
-//                            else if(bounds.contains(event.x, event.y))//Kick back
-//                           {
-//                               letterBeingDragged.setLocation(new Point(letterBeingDragged.getBounds().left, letterBeingDragged.getBounds().top + 50));
-//                           }
                         }
 
                     }
