@@ -142,7 +142,6 @@ public class GameScreen extends Screen {
                 }
             }
         }
-
     }
 
     @Override
