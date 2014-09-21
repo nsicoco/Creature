@@ -65,10 +65,17 @@ public class MathQuizActivity extends Activity implements View.OnClickListener {
             TextView txtSec = ((TextView) findViewById(R.id.sec));
             TextView suc = ((TextView) findViewById(R.id.success));
             TextView fail = ((TextView) findViewById(R.id.fail));
+            TextView oper = ((TextView) findViewById(R.id.operator));
             EditText an = ((EditText) findViewById(R.id.answer));
             int first = Integer.parseInt(txtFirst.getText().toString());
             int second = Integer.parseInt(txtSec.getText().toString());
-            int answer = first + second;
+            int answer = 0;
+
+            if(oper.getText().equals("+"))
+                answer = first + second;
+            else
+                answer = first - second;
+
             if(Integer.parseInt(an.getText().toString()) == answer)
             {
                 suc.setVisibility(view.VISIBLE);
