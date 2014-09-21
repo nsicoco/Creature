@@ -1,0 +1,11 @@
+dog
+cat
+cow
+bow
+ear
+keys
+apple
+banana
+orange
+tomato
+pizza

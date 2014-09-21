@@ -11,17 +11,17 @@ import java.util.Random;
  */
 public class Anagram
 {
-    private Image wordImage;
+    //private Image wordImage;
     private String word;
     private char[] letters;
     private char[] anagram;
     private Random random;
 
-    public Anagram(String word, Image wordImage)
+    public Anagram(String word)//, Image wordImage)
     {
         random = new Random();
         this.word = word.toUpperCase();
-        this.wordImage = wordImage;
+        //this.wordImage = wordImage;
         letters = this.word.toCharArray();
         shuffle();
     }
@@ -42,8 +42,9 @@ public class Anagram
         }
 
     }
-    public char[] getLetters() { return letters; }
-    public Image getWordImage() { return wordImage; }
+    public char[] getLetters() { return anagram; }
+
+    //public Image getWordImage() { return wordImage; }
 
     public String toString()
     {

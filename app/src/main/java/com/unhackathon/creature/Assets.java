@@ -10,4 +10,5 @@ public class Assets {
     public static Image menuBackground, startButton, quitButton, startButtonPressed, quitButtonPressed;
     public static Image[] alphabetImages;
     public static Sound click;
+    public static String[] dictionary;
 }

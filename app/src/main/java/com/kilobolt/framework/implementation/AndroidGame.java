@@ -29,6 +29,9 @@ public abstract class AndroidGame extends Activity implements Game {
     WakeLock wakeLock;
 
     @Override
+    public Context getContext() { return this.getContext(); }
+
+    @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 

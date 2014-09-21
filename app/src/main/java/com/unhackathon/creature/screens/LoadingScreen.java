@@ -6,13 +6,19 @@ package com.unhackathon.creature.screens;
 import android.graphics.Point;
 
 import com.kilobolt.framework.Button;
+import com.kilobolt.framework.FileIO;
 import com.kilobolt.framework.Game;
 import com.kilobolt.framework.Graphics;
 import com.kilobolt.framework.Image;
 import com.kilobolt.framework.Screen;
 import com.kilobolt.framework.Graphics.ImageFormat;
 import com.kilobolt.framework.implementation.AndroidButton;
+import com.kilobolt.framework.implementation.AndroidFileIO;
 import com.unhackathon.creature.Assets;
+
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Scanner;
 
 
 public class LoadingScreen extends Screen {
@@ -41,6 +47,21 @@ public class LoadingScreen extends Screen {
         //Sounds here
 
 
+        //Data load stuff
+        AndroidFileIO androidFileIO = new AndroidFileIO(this.game.getContext());
+        try {
+            ArrayList<String> dictionaryArrayList = new ArrayList<String>();
+            Scanner scanner = new Scanner(androidFileIO.readFile("data/dictionary.txt"));
+            while(scanner.hasNext())
+            {
+                dictionaryArrayList.add(scanner.nextLine());
+            }
+            scanner.close();
+            Assets.dictionary = (String[]) dictionaryArrayList.toArray();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
         //Assets.click = game.getAudio().createSound("explode.ogg");
 

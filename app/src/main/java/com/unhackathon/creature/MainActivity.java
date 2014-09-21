@@ -8,24 +8,29 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.kilobolt.framework.Screen;
+import com.kilobolt.framework.implementation.AndroidFileIO;
 import com.kilobolt.framework.implementation.AndroidGame;
 import com.unhackathon.creature.minigames.Anagram;
 import com.unhackathon.creature.screens.LoadingScreen;
 
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Scanner;
+
 
 public class MainActivity extends AndroidGame {
     private Camera c;
+    private String[] dictionary;
 
     @Override
     public Screen getInitScreen() {
-        Anagram anagram = new Anagram("Frankie", null);
-        Log.v("Anagrams", anagram.toString());
         return new LoadingScreen(this);
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         c = new Camera(this);
+
         super.onCreate(savedInstanceState);
     }
 

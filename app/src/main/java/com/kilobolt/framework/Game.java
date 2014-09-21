@@ -1,5 +1,7 @@
 package com.kilobolt.framework;
 
+import android.content.Context;
+
 public interface Game {
 
     public Audio getAudio();
@@ -15,6 +17,8 @@ public interface Game {
     public Screen getCurrentScreen();
 
     public Screen getInitScreen();
+
+    public Context getContext();
 
     public void quit();
 }

@@ -10,6 +10,7 @@ import com.kilobolt.framework.Graphics;
 import com.kilobolt.framework.Screen;
 import com.kilobolt.framework.Input.TouchEvent;
 import com.unhackathon.creature.Assets;
+import com.unhackathon.creature.minigames.Anagram;
 
 public class GameScreen extends Screen {
     enum GameState {
@@ -37,6 +38,7 @@ public class GameScreen extends Screen {
         paint.setAntiAlias(true);
         paint.setColor(Color.WHITE);
         gameMode = "Anagram";
+
         //g.incrementTextSize(0.9f);
 
     }
@@ -187,7 +189,17 @@ public class GameScreen extends Screen {
           //      500, 300, paint);
 
         //Start index
-        g.drawImage(Assets.alphabetImages[0], 75, 100);
+        if(gameMode.equals("Anagram"))
+        {
+            String word = Assets.dictionary[(int)(Math.random() * Assets.dictionary.length)];
+            Anagram anagram = new Anagram(word);
+            char[] anagramLetters = anagram.getLetters();
+
+            int startX = 75, startY = 100;
+            for(int i = 0; i < word.length(); i++)
+                g.drawImage(Assets.alphabetImages[0], 75, 100);
+        }
+
 
     }
 
