@@ -8,6 +8,7 @@ import android.graphics.Point;
 import com.kilobolt.framework.Button;
 import com.kilobolt.framework.Game;
 import com.kilobolt.framework.Graphics;
+import com.kilobolt.framework.Image;
 import com.kilobolt.framework.Screen;
 import com.kilobolt.framework.Graphics.ImageFormat;
 import com.kilobolt.framework.implementation.AndroidButton;
@@ -28,6 +29,18 @@ public class LoadingScreen extends Screen {
 
         Assets.startButtonPressed = g.newImage("img/startButtonPressed.png", ImageFormat.RGB565);
         Assets.quitButtonPressed = g.newImage("img/quitButtonPressed.png", ImageFormat.RGB565);
+
+        //Load Letters
+        String alphabet = new String("abcdefghijklmnopqrstuvwxyz");
+        char[] letters = alphabet.toCharArray();
+        Assets.alphabetImages = new Image[alphabet.length()];
+        for(int i = 0; i < letters.length; i++)
+            Assets.alphabetImages[i] = g.newImage("img/alphabet/" + letters[i] + ".png", ImageFormat.RGB565);
+
+
+        //Sounds here
+
+
 
         //Assets.click = game.getAudio().createSound("explode.ogg");
 

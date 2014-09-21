@@ -21,6 +21,10 @@ public interface Graphics {
 
 	public void drawImage(Image Image, int x, int y);
 
+    public void incrementTextSize(float amount);
+
+    public void decrementTextSize(float amount);
+
 	void drawString(String text, int x, int y, Paint paint);
 
 	public int getWidth();

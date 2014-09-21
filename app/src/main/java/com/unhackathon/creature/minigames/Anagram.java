@@ -29,10 +29,6 @@ public class Anagram
     {
         anagram = word.toCharArray();
 
-        //Log.v("Anagrams", "Letters = " + new String(letters));
-        //Log.v("Anagrams", "Anagram = " + new String(anagram));
-        //Log.v("Anagrams", "Difference = " + differenceBetweenWords(anagram));
-
         for(int i = 0; i < letters.length; i++)
         {
             int firstIndex = random.nextInt(letters.length);
@@ -40,7 +36,7 @@ public class Anagram
             while(secondIndex == firstIndex)
                 secondIndex = random.nextInt(letters.length);
 
-            char temp = letters[firstIndex];
+            char temp = anagram[firstIndex];
             anagram[firstIndex] = anagram[secondIndex];
             anagram[secondIndex] = temp;
         }

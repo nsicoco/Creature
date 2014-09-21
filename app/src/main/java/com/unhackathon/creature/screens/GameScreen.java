@@ -7,9 +7,9 @@ import android.graphics.Paint;
 
 import com.kilobolt.framework.Game;
 import com.kilobolt.framework.Graphics;
-import com.kilobolt.framework.Image;
 import com.kilobolt.framework.Screen;
 import com.kilobolt.framework.Input.TouchEvent;
+import com.unhackathon.creature.Assets;
 
 public class GameScreen extends Screen {
     enum GameState {
@@ -21,7 +21,8 @@ public class GameScreen extends Screen {
     // Variable Setup
     // You would create game objects here.
 
-    int livesLeft = 1;
+    private int livesLeft = 1;
+    private String gameMode;
     Paint paint;
 
     public GameScreen(Game game) {
@@ -31,10 +32,12 @@ public class GameScreen extends Screen {
 
         // Defining a paint object
         paint = new Paint();
-        paint.setTextSize(30);
+        paint.setTextSize(85);
         paint.setTextAlign(Paint.Align.CENTER);
         paint.setAntiAlias(true);
         paint.setColor(Color.WHITE);
+        gameMode = "Anagram";
+        //g.incrementTextSize(0.9f);
 
     }
 
@@ -177,9 +180,14 @@ public class GameScreen extends Screen {
     private void drawReadyUI() {
         Graphics g = game.getGraphics();
 
-        g.drawARGB(155, 0, 0, 0);
-        g.drawString("Tap each side of the screen to move in that direction.",
-                640, 300, paint);
+        g.drawARGB(255, 255, 255, 255);
+
+
+        //g.drawString("Yeah dude.",
+          //      500, 300, paint);
+
+        //Start index
+        g.drawImage(Assets.alphabetImages[0], 75, 100);
 
     }
 
@@ -191,7 +199,7 @@ public class GameScreen extends Screen {
     private void drawPausedUI() {
         Graphics g = game.getGraphics();
         // Darken the entire screen so you can display the Paused screen.
-        g.drawARGB(155, 0, 0, 0);
+        g.drawARGB(255, 255, 255, 255);
 
     }
 

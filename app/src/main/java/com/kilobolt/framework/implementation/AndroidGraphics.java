@@ -104,9 +104,13 @@ public class AndroidGraphics implements Graphics {
     @Override
     public void drawString(String text, int x, int y, Paint paint){
     	canvas.drawText(text, x, y, paint);
-
-    	
     }
+    @Override
+    public void incrementTextSize(float amount) { paint.setTextSize(paint.getTextSize() + amount); }
+
+    @Override
+    public void decrementTextSize(float amount) { paint.setTextSize(paint.getTextSize() - amount); }
+
     
 
     public void drawImage(Image Image, int x, int y, int srcX, int srcY,
