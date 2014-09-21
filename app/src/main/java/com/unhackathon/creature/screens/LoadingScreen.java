@@ -46,6 +46,9 @@ public class LoadingScreen extends Screen {
         Assets.confirmButton = g.newImage("img/confirmButton.png", ImageFormat.RGB565);
         Assets.confirmButtonPressed = g.newImage("img/confirmButtonPressed.png", ImageFormat.RGB565);
 
+        Assets.startOverButton = g.newImage("img/startOverButton.png", ImageFormat.RGB565);
+        Assets.startOverButtonPressed = g.newImage("img/startOverButtonPressed.png", ImageFormat.RGB565);
+
         Assets.mastermindButton = g.newImage("img/mastermindButton.png", ImageFormat.RGB565);
         Assets.mastermindButtonPressed = g.newImage("img/mastermindButtonPressed.png", ImageFormat.RGB565);
 

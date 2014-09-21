@@ -34,7 +34,7 @@ public class Camera {
         if(resultCode == Activity.RESULT_OK) {
             //Image Captured
             capturedImage = (Bitmap) data.getExtras().get("data");
-            ai = new AndroidImage(capturedImage, Graphics.ImageFormat.ARGB8888);
+            ai = new AndroidImage(capturedImage, Graphics.ImageFormat.RGB565);
         } else if (resultCode == Activity.RESULT_CANCELED) {
             //User cancelled the image capture
         } else {
