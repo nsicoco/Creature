@@ -25,25 +25,50 @@
         </activity>
         <activity
             android:name=".CreatureCreationActivity"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait"
             android:label="@string/title_activity_creature_creation" >
         </activity>
 
         <activity
             android:name=".mastermind.MastermindActivity"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait"
             android:label="@string/title_activity_mastermind" >
         </activity>
         <activity
             android:name=".mastermind.PlayGame"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait"
             android:label="@string/title_activity_mastermind" >
         </activity>
         <activity
             android:name=".mastermind.PickColor"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait"
             android:label="@string/title_activity_mastermind" >
         </activity>
         <activity
             android:name=".mastermind.About"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait"
             android:label="@string/title_activity_mastermind" >
         </activity>
+
+        <activity
+            android:name=".minigames.MathQuizActivity"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait"
+            android:label="" >
+        </activity>
+
+        <activity
+            android:name=".minigames.AdvancedMathQuizActivity"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait"
+            android:label="" >
+        </activity>
+
 
     </application>
 

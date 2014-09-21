@@ -13,6 +13,8 @@ import com.kilobolt.framework.implementation.AndroidButton;
 import com.kilobolt.framework.implementation.AndroidGame;
 import com.unhackathon.creature.Assets;
 import com.unhackathon.creature.mastermind.MastermindActivity;
+import com.unhackathon.creature.minigames.AdvancedMathQuizActivity;
+import com.unhackathon.creature.minigames.MathQuizActivity;
 
 import java.util.List;
 
@@ -20,11 +22,36 @@ import java.util.List;
  * Created by Noel on 9/21/2014.
  */
 public class GameMenuScreen extends Screen {
+    private Button startOverButton;
+
     public GameMenuScreen(Game game) {
         super(game);
-        addButton(new AndroidButton("Mastermind", Assets.mastermindButton, Assets.mastermindButtonPressed));
-        addButton(new AndroidButton("Anagram", Assets.anagramButton, Assets.anagramPressedButton));
+        Graphics g = game.getGraphics();
 
+        startOverButton = new AndroidButton("StartOver", Assets.startOverButton, Assets.startOverButtonPressed, new Point(20, 20));
+        addButton(startOverButton);
+        int yOffset = 20;
+        if(Assets.avatar != null) {
+            yOffset += 20 + Assets.avatar.getHeight();
+        }
+
+        int x = (g.getWidth() - Assets.mastermindButton.getWidth()) / 2;
+        addButton(new AndroidButton("Mastermind", Assets.mastermindButton, Assets.mastermindButtonPressed, new Point(x, yOffset)));
+        yOffset += 20 + Assets.mastermindButton.getHeight();
+
+        x = (g.getWidth() - Assets.anagramButton.getWidth()) / 2;
+        addButton(new AndroidButton("Anagram", Assets.anagramButton, Assets.anagramPressedButton, new Point(x, yOffset)));
+
+        yOffset += 20 + Assets.anagramButton.getHeight();
+        
+        x = (g.getWidth() - Assets.mathQuizButton.getWidth()) / 2;
+        addButton(new AndroidButton("MathQuiz", Assets.mathQuizButton, Assets.mathQuizButtonPressed, new Point(x, yOffset)));
+        
+        yOffset += 20 + Assets.mathQuizButton.getHeight();
+        
+        x = (g.getWidth() - Assets.advancedMathQuizButton.getWidth()) / 2;
+        addButton(new AndroidButton("AdvancedMathQuiz", Assets.advancedMathQuizButton, Assets.advancedMathQuizButtonPressed, new Point(x, yOffset)));
+        
     }
 
     @Override
@@ -51,6 +78,21 @@ public class GameMenuScreen extends Screen {
                         else if(button.getName().equals("Anagram"))
                         {
                             game.setScreen(new AnagramScreen(game));
+                            return;
+                        }
+                        else if(button.getName().equalsIgnoreCase("StartOver")) {
+                            game.setScreen(new CharacterCreationScreen(game));
+                        }
+                        else if(button.getName().equals("MathQuiz"))
+                        {
+                            Intent intent = new Intent(ag, MathQuizActivity.class);
+                            ag.startActivity(intent);
+                            return;
+                        }
+                        else if(button.getName().equals("AdvancedMathQuiz"))
+                        {
+                            Intent intent = new Intent(ag, AdvancedMathQuizActivity.class);
+                            ag.startActivity(intent);
                             return;
                         }
                     }
@@ -83,6 +125,11 @@ public class GameMenuScreen extends Screen {
             yOffset += 20 + Assets.avatar.getHeight();
         }
 
+        for(Button button : getButtons()) {
+            Rect bounds = button.getBounds();
+            g.drawImage(button.getImage(), bounds.left, bounds.top);
+        }
+        /*
         for(int i = 0; i < buttons.size(); i++) {
             Rect bounds = buttons.get(i).getBounds();
 //            if(buttons.get(i).getName().equals("Anagram"))
@@ -96,7 +143,7 @@ public class GameMenuScreen extends Screen {
             int y = yOffset + row*(bounds.height() + 20);
             buttons.get(i).setLocation(new Point(x, y));
             g.drawImage(buttons.get(i).getImage(), x, y);
-        }
+        }//*/
     }
 
     @Override

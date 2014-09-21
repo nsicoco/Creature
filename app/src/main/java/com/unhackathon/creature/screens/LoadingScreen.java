@@ -46,11 +46,21 @@ public class LoadingScreen extends Screen {
         Assets.confirmButton = g.newImage("img/confirmButton.png", ImageFormat.RGB565);
         Assets.confirmButtonPressed = g.newImage("img/confirmButtonPressed.png", ImageFormat.RGB565);
 
+        Assets.startOverButton = g.newImage("img/startOverButton.png", ImageFormat.RGB565);
+        Assets.startOverButtonPressed = g.newImage("img/startOverButtonPressed.png", ImageFormat.RGB565);
+
         Assets.mastermindButton = g.newImage("img/mastermindButton.png", ImageFormat.RGB565);
         Assets.mastermindButtonPressed = g.newImage("img/mastermindButtonPressed.png", ImageFormat.RGB565);
 
         Assets.anagramButton = g.newImage("img/anagramButton.png", ImageFormat.RGB565);
         Assets.anagramPressedButton = g.newImage("img/anagramButtonPressed.png", ImageFormat.RGB565);
+
+        Assets.mathQuizButton = g.newImage("img/mathQuizButton.png", ImageFormat.RGB565);
+        Assets.mathQuizButtonPressed = g.newImage("img/mathQuizButton.png", ImageFormat.RGB565);
+
+        Assets.advancedMathQuizButton = g.newImage("img/mathForSmartiesQuiz.png", ImageFormat.RGB565);
+        Assets.advancedMathQuizButtonPressed = g.newImage("img/mathForSmartiesQuiz.png", ImageFormat.RGB565);
+
 
         File avatarFile = new File(Environment.getExternalStorageDirectory(), "Creature" + File.separator + "avatar.png");
         if(avatarFile.exists()) {
