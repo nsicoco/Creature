@@ -58,8 +58,8 @@ public class LoadingScreen extends Screen {
         Assets.mathQuizButton = g.newImage("img/mathQuizButton.png", ImageFormat.RGB565);
         Assets.mathQuizButtonPressed = g.newImage("img/mathQuizButton.png", ImageFormat.RGB565);
 
-        Assets.advancedMathQuizButton = g.newImage("img/mathForSmartiesQuiz.png", ImageFormat.RGB565);
-        Assets.advancedMathQuizButtonPressed = g.newImage("img/mathForSmartiesQuiz.png", ImageFormat.RGB565);
+        Assets.advancedMathQuizButton = g.newImage("img/advancedMathQuizButton.png", ImageFormat.RGB565);
+        Assets.advancedMathQuizButtonPressed = g.newImage("img/advancedMathQuizButtonPressed.png", ImageFormat.RGB565);
 
 
         File avatarFile = new File(Environment.getExternalStorageDirectory(), "Creature" + File.separator + "avatar.png");

@@ -28,6 +28,8 @@ import java.util.List;
 public class GameMenuScreen extends Screen {
     private Button startOverButton;
     private UserStats stats;
+    private int expBarWidth;
+    private int expBarHeight;
 
     public GameMenuScreen(Game game) {
         super(game);
@@ -42,9 +44,9 @@ public class GameMenuScreen extends Screen {
             yOffset += 20 + Assets.avatar.getHeight();
         }
 
-        int expBarHeight = 50;
-        yOffset += expBarHeight += 20;
-
+        expBarWidth = 600;
+        expBarHeight = 50;
+        yOffset += expBarHeight + 20;
 
         int x = (g.getWidth() - Assets.mastermindButton.getWidth()) / 2;
         addButton(new AndroidButton("Mastermind", Assets.mastermindButton, Assets.mastermindButtonPressed, new Point(x, yOffset)));
@@ -126,7 +128,8 @@ public class GameMenuScreen extends Screen {
     @Override
     public void paint(float deltaTime) {
         Graphics g = game.getGraphics();
-        g.drawImage(Assets.menuBackground, 0, 0);
+        //g.drawImage(Assets.menuBackground, 0, 0);
+        g.drawRect(0, 0, g.getWidth(), g.getHeight(), Color.rgb(242, 242, 242));
 
         int yOffset = 20;
 
@@ -136,21 +139,31 @@ public class GameMenuScreen extends Screen {
             yOffset += 20 + Assets.avatar.getHeight();
         }
 
-        int x = (g.getWidth()/2) - 200;
-        g.drawRect(x, yOffset, 400, 50, Color.RED);
-        int percent = (int) (stats.getExpPrecent() * 400);
-        g.drawRect(x, yOffset, percent, 50, Color.GREEN);
+        int x = (g.getWidth() - expBarWidth) / 2;/*
+        g.drawRect(x, yOffset, expBarWidth, expBarHeight, Color.RED);
+        int percent = (int) (stats.getExpPrecent() * expBarWidth);
+        g.drawRect(x, yOffset, percent, expBarHeight, Color.GREEN);//*/
 
-        yOffset += 50;
+        int percent = (int) (stats.getExpPrecent() * expBarWidth);
+        g.drawRect(x, yOffset, percent, expBarHeight, Color.GREEN);
+        int lightBlue = Color.rgb(104, 151, 252);
+        g.drawRect(x, yOffset, expBarWidth, expBarHeight, Color.rgb(242, 242, 242));
+        g.drawLine(x, yOffset, x + expBarWidth, yOffset, lightBlue);
+        g.drawLine(x, yOffset, x, yOffset + expBarHeight, lightBlue);
+        g.drawLine(x + expBarWidth, yOffset, x + expBarWidth, yOffset + expBarHeight, lightBlue);
+        g.drawLine(x, yOffset + expBarHeight, x + expBarWidth, yOffset + expBarHeight, lightBlue);
+        g.drawRect(x, yOffset, percent, expBarHeight, lightBlue);
+
+        yOffset += expBarHeight - 10;
 
         Paint p = new Paint();
-        p.setTextSize(50);
+        p.setTextSize(expBarHeight);
         p.setAntiAlias(true);
         p.setTextAlign(Paint.Align.CENTER);
         p.setColor(Color.WHITE);
         g.drawString("Level: " + stats.getLevel(), g.getWidth()/2, yOffset, p);
 
-        yOffset += 20;
+        yOffset += 80;
         
         for(Button button : getButtons()) {
             Rect bounds = button.getBounds();
