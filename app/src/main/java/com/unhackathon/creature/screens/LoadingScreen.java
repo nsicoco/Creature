@@ -5,7 +5,6 @@ package com.unhackathon.creature.screens;
  */
 import android.graphics.Point;
 
-import com.kilobolt.framework.Button;
 import com.kilobolt.framework.Game;
 import com.kilobolt.framework.Graphics;
 import com.kilobolt.framework.Screen;
@@ -29,6 +28,11 @@ public class LoadingScreen extends Screen {
         Assets.startButtonPressed = g.newImage("img/startButtonPressed.png", ImageFormat.RGB565);
         Assets.quitButtonPressed = g.newImage("img/quitButtonPressed.png", ImageFormat.RGB565);
 
+        Assets.takePictureButton = g.newImage("img/takePictureButton.png", ImageFormat.RGB565);
+        Assets.takePictureButtonPressed = g.newImage("img/takePictureButtonPressed.png", ImageFormat.RGB565);
+
+        Assets.confirmButton = g.newImage("img/confirmButton.png", ImageFormat.RGB565);
+        Assets.confirmButtonPressed = g.newImage("img/confirmButtonPressed.png", ImageFormat.RGB565);
         //Assets.click = game.getAudio().createSound("explode.ogg");
 
         MainMenuScreen mainMenuScreen = new MainMenuScreen(game);

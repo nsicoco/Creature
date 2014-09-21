@@ -31,6 +31,7 @@ public class MainActivity extends AndroidGame {
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        Log.d("creature", "test");
         if(requestCode == c.TAKE_PICTURE_REQUEST_CODE) {
             c.pictureTaken(resultCode, data);
         }
