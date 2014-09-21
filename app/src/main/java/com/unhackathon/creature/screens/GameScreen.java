@@ -246,6 +246,7 @@ public class GameScreen extends Screen {
 
     @Override
     public void backButton() {
-        pause();
+        game.setScreen(new MainMenuScreen(game));
+
     }
 }
