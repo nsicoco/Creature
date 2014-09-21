@@ -18,7 +18,5 @@ public interface Game {
 
     public Screen getInitScreen();
 
-    public Context getContext();
-
     public void quit();
 }

@@ -13,6 +13,7 @@ import com.kilobolt.framework.Screen;
 import com.kilobolt.framework.Graphics.ImageFormat;
 import com.kilobolt.framework.implementation.AndroidButton;
 import com.kilobolt.framework.implementation.AndroidFileIO;
+import com.kilobolt.framework.implementation.AndroidGame;
 import com.unhackathon.creature.Assets;
 
 import java.io.IOException;
@@ -42,11 +43,8 @@ public class LoadingScreen extends Screen {
             Assets.alphabetImages[i] = g.newImage("img/alphabet/" + letters[i] + ".png", ImageFormat.RGB565);
 
 
-        //Sounds here
-
-
         //Data load stuff
-        AndroidFileIO androidFileIO = new AndroidFileIO(this.game.getContext());
+        AndroidFileIO androidFileIO = new AndroidFileIO((AndroidGame) game);
         try {
             ArrayList<String> dictionaryArrayList = new ArrayList<String>();
             Scanner scanner = new Scanner(androidFileIO.readFile("data/dictionary.txt"));
@@ -60,6 +58,11 @@ public class LoadingScreen extends Screen {
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+        //Sounds here
+
+
+
 
         //Assets.click = game.getAudio().createSound("explode.ogg");
 
