@@ -6,7 +6,6 @@ package com.unhackathon.creature.screens;
 import android.graphics.Point;
 
 import com.kilobolt.framework.Button;
-import com.kilobolt.framework.FileIO;
 import com.kilobolt.framework.Game;
 import com.kilobolt.framework.Graphics;
 import com.kilobolt.framework.Image;
@@ -19,7 +18,6 @@ import com.unhackathon.creature.Assets;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
-
 
 public class LoadingScreen extends Screen {
     public LoadingScreen(Game game) { super(game); }
