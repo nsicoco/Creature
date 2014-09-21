@@ -3,6 +3,8 @@ package com.kilobolt.framework;
 import android.graphics.Point;
 import android.graphics.Rect;
 
+import com.kilobolt.framework.Image;
+
 /**
  * Created by francis on 9/20/14.
  */
