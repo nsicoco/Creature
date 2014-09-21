@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id = "@+id/first"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" android:text=""
+        />
+
+    <TextView
+        android:id = "@+id/sec"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below= "@id/first"
+        />
+
+    <EditText
+        android:id="@+id/answer"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:inputType="number"
+        android:layout_below= "@id/sec"/>
+
+
+</RelativeLayout>
