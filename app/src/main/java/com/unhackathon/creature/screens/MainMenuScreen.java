@@ -39,10 +39,16 @@ public class MainMenuScreen extends Screen {
                             || event.type == TouchEvent.TOUCH_DRAGGED) {
                         button.setPressed(true);
                     }
-                    else if(event.type == TouchEvent.TOUCH_UP)
+                    else if(event.type == TouchEvent.TOUCH_UP)//Button clicked & is Play Game
                     {
                         button.setPressed(false);
-                        game.setScreen(new GameScreen(game));
+                        if(button.getName().equals("Play"))
+                            game.setScreen(new GameScreen(game));
+                        else if(button.getName().equals("Quit"))
+                        {
+                            //this.pause();
+                            game.quit();
+                        }
 
                     }
                 }

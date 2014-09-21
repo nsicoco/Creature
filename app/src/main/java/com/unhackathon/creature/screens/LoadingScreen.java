@@ -32,8 +32,8 @@ public class LoadingScreen extends Screen {
         //Assets.click = game.getAudio().createSound("explode.ogg");
 
         MainMenuScreen mainMenuScreen = new MainMenuScreen(game);
-        mainMenuScreen.addButton(new AndroidButton(Assets.startButton, Assets.startButtonPressed, new Point(250, 100)));
-        mainMenuScreen.addButton(new AndroidButton(Assets.quitButton, Assets.quitButtonPressed, new Point(250, 600)));
+        mainMenuScreen.addButton(new AndroidButton("Play", Assets.startButton, Assets.startButtonPressed, new Point(250, 100)));
+        mainMenuScreen.addButton(new AndroidButton("Quit", Assets.quitButton, Assets.quitButtonPressed, new Point(250, 600)));
         game.setScreen(mainMenuScreen);
 
 
