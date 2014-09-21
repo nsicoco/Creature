@@ -3,30 +3,38 @@ package com.unhackathon.creature.screens;
 /**
  * Created by francis on 9/20/14.
  */
+import android.graphics.Point;
+
+import com.kilobolt.framework.Button;
 import com.kilobolt.framework.Game;
 import com.kilobolt.framework.Graphics;
 import com.kilobolt.framework.Screen;
 import com.kilobolt.framework.Graphics.ImageFormat;
+import com.kilobolt.framework.implementation.AndroidButton;
 import com.unhackathon.creature.Assets;
 
 
 public class LoadingScreen extends Screen {
-    public LoadingScreen(Game game) {
-        super(game);
-    }
+    public LoadingScreen(Game game) { super(game); }
 
 
     @Override
     public void update(float deltaTime) {
         Graphics g = game.getGraphics();
         Assets.menuBackground = g.newImage("img/menuBackground.png", ImageFormat.RGB565);
+
         Assets.startButton = g.newImage("img/startButton.png", ImageFormat.RGB565);
         Assets.quitButton = g.newImage("img/quitButton.png", ImageFormat.RGB565);
+
+        Assets.startButtonPressed = g.newImage("img/startButtonPressed.png", ImageFormat.RGB565);
+        Assets.quitButtonPressed = g.newImage("img/quitButtonPressed.png", ImageFormat.RGB565);
+
         //Assets.click = game.getAudio().createSound("explode.ogg");
 
-
-
-        game.setScreen(new MainMenuScreen(game));
+        MainMenuScreen mainMenuScreen = new MainMenuScreen(game);
+        mainMenuScreen.addButton(new AndroidButton(Assets.startButton, Assets.startButtonPressed, new Point(250, 100)));
+        mainMenuScreen.addButton(new AndroidButton(Assets.quitButton, Assets.quitButtonPressed, new Point(250, 600)));
+        game.setScreen(mainMenuScreen);
 
 
     }
