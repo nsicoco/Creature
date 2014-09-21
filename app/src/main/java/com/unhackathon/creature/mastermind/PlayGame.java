@@ -147,13 +147,10 @@ public class PlayGame extends Activity implements View.OnClickListener {
 						for(int i = 0; i < 4; i++)
 							if(playerCode[i].equals(computerCode[i]))
 								numCorrect++;
-						if(numCorrect > 0)
-						{
 							CharSequence text = numCorrect + " colors are in the correct place.";
 							Toast white = Toast.makeText(getApplicationContext(), text, Toast.LENGTH_SHORT);
 							white.setGravity(Gravity.CENTER_VERTICAL, 0, 0);
 							white.show();
-						}
 
 						currentButton -= 8;
 
