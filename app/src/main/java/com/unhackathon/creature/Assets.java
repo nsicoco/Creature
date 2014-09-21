@@ -9,7 +9,8 @@ import com.kilobolt.framework.Sound;
 public class Assets {
     public static Image menuBackground, startButton, quitButton, startButtonPressed, quitButtonPressed,
             takePictureButton, takePictureButtonPressed, confirmButton, confirmButtonPressed;
-    public static Image mastermindButton, mastermindButtonPressed, anagramButton, anagramPressedButton;
+    public static Image mastermindButton, mastermindButtonPressed, anagramButton, anagramPressedButton, mathQuizButton,
+    mathQuizButtonPressed, advancedMathQuizButton, advancedMathQuizButtonPressed;
     public static Image avatar;
     public static Image[] alphabetImages;
     public static Sound click;

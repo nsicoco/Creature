@@ -45,6 +45,17 @@
             android:label="@string/title_activity_mastermind" >
         </activity>
 
+        <activity
+            android:name=".minigames.MathQuizActivity"
+            android:label="" >
+        </activity>
+
+        <activity
+            android:name=".minigames.AdvancedMathQuizActivity"
+            android:label="" >
+        </activity>
+
+
     </application>
 
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />

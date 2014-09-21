@@ -52,6 +52,13 @@ public class LoadingScreen extends Screen {
         Assets.anagramButton = g.newImage("img/anagramButton.png", ImageFormat.RGB565);
         Assets.anagramPressedButton = g.newImage("img/anagramButtonPressed.png", ImageFormat.RGB565);
 
+        Assets.mathQuizButton = g.newImage("img/mathQuizButton.png", ImageFormat.RGB565);
+        Assets.mathQuizButtonPressed = g.newImage("img/mathQuizButton.png", ImageFormat.RGB565);
+
+        Assets.advancedMathQuizButton = g.newImage("img/mathForSmartiesQuiz.png", ImageFormat.RGB565);
+        Assets.advancedMathQuizButtonPressed = g.newImage("img/mathForSmartiesQuiz.png", ImageFormat.RGB565);
+
+
         File avatarFile = new File(Environment.getExternalStorageDirectory(), "Creature" + File.separator + "avatar.png");
         if(avatarFile.exists()) {
             BitmapFactory.Options options = new BitmapFactory.Options();

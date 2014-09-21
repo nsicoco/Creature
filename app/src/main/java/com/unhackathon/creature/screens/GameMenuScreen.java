@@ -1,7 +1,6 @@
 package com.unhackathon.creature.screens;
 
 import android.content.Intent;
-import android.graphics.Paint;
 import android.graphics.Point;
 import android.graphics.Rect;
 
@@ -12,9 +11,10 @@ import com.kilobolt.framework.Input;
 import com.kilobolt.framework.Screen;
 import com.kilobolt.framework.implementation.AndroidButton;
 import com.kilobolt.framework.implementation.AndroidGame;
-import com.kilobolt.framework.implementation.AndroidImage;
 import com.unhackathon.creature.Assets;
 import com.unhackathon.creature.mastermind.MastermindActivity;
+import com.unhackathon.creature.minigames.AdvancedMathQuizActivity;
+import com.unhackathon.creature.minigames.MathQuizActivity;
 
 import java.util.List;
 
@@ -26,7 +26,8 @@ public class GameMenuScreen extends Screen {
         super(game);
         addButton(new AndroidButton("Mastermind", Assets.mastermindButton, Assets.mastermindButtonPressed));
         addButton(new AndroidButton("Anagram", Assets.anagramButton, Assets.anagramPressedButton));
-
+        addButton(new AndroidButton("MathQuiz", Assets.mathQuizButton, Assets.mathQuizButtonPressed));
+        addButton(new AndroidButton("AdvancedMathQuiz", Assets.advancedMathQuizButton, Assets.advancedMathQuizButtonPressed));
     }
 
     @Override
@@ -53,6 +54,18 @@ public class GameMenuScreen extends Screen {
                         else if(button.getName().equals("Anagram"))
                         {
                             game.setScreen(new GameScreen(game));
+                            return;
+                        }
+                        else if(button.getName().equals("MathQuiz"))
+                        {
+                            Intent intent = new Intent(ag, MathQuizActivity.class);
+                            ag.startActivity(intent);
+                            return;
+                        }
+                        else if(button.getName().equals("AdvancedMathQuiz"))
+                        {
+                            Intent intent = new Intent(ag, AdvancedMathQuizActivity.class);
+                            ag.startActivity(intent);
                             return;
                         }
                     }
